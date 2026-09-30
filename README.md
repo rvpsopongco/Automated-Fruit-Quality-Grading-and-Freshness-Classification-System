@@ -1,1 +1,1 @@
-# project-baldo-see-sopongco
+CPE178P Foundations of AI Project
