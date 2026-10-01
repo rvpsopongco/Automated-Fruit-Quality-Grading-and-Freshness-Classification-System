@@ -212,4 +212,4 @@ Returns system health, model load status, and runtime environment details.
 ## License & Course Attribution
 
 Developed in partial fulfillment of the requirements for CPE178P Foundations of AI at Mapúa University  
-*Mandatory AI Disclosure:* Consultative AI tools (Gemini) were utilized strictly for structural formatting, architectural diagramming, and schedule drafting per Mapúa Academic Council Resolution No. 2026-06. All code implementation, model training, and technical verifications were conducted independently by the student team.
+AI Disclosure: Consultative AI tools (Gemini) were utilized strictly for structural formatting, architectural diagramming, and schedule drafting per Mapúa Academic Council Resolution No. 2026-06. All code implementation, model training, and technical verifications were conducted independently by the student team.
