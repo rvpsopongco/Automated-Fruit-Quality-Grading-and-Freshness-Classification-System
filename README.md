@@ -88,7 +88,7 @@ This project delivers an **Automated Fruit Quality Grading and Freshness Classif
 ## Repository Directory Layout
 
 ```text
-cpe178p-fopi01-group02-fruit-quality-grading/
+cpe178p-fopi01-1t2627-group02-fruit-quality-grading/
 ├── backend/                  # Logic Tier (FastAPI REST Service)
 │   ├── main.py               # REST API endpoints, ONNX inference session, post-processing
 │   ├── requirements.txt      # Backend Python dependencies
@@ -103,8 +103,8 @@ cpe178p-fopi01-group02-fruit-quality-grading/
 │   └── audit_logs.json       # System execution and latency audit logs
 ├── docs/                     # Documentation & Architecture Diagrams
 │   ├── 3-tier-architecture-diagram-v3.drawio
-│   ├── CPE178P_Project_Proposal.pdf
-│   └── CPE178P_Project_Schedule.xlsx
+│   ├── CPE178P_FOPI01_1T2627_Group02_Project_Proposal.pdf
+│   └── CPE178P_FOPI01_1T2627_Group02_Project_Sked.xlsx
 ├── docker-compose.yml        # Orchestration for multi-container deployment
 ├── .gitignore                # Git exclusion rules
 └── README.md                 # Project documentation
