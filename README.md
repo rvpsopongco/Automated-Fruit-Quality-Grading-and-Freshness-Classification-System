@@ -8,7 +8,9 @@
 [![Docker](https://img.shields.io/badge/Docker-24.0+-2496ed.svg)](https://www.docker.com/)
 
 **CPE178P Foundations of AI**
+
 **Group02 FOPI01**
+
 **1T2627**
 
 ---
