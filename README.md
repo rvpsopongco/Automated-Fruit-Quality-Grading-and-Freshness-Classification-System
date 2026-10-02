@@ -25,7 +25,7 @@ This project delivers an **Automated Fruit Quality Grading and Freshness Classif
 
 ## Key System Features & Objectives
 
-* **Multi-Class Freshness Classification:** Classifies 6 produce categories (`freshapples`, `rottenapples`, `freshbananas`, `rottenbananas`, `freshoranges`, `rottenoranges`) with target validation accuracy $\ge 92\%$ and Macro $F1 \ge 0.90$.
+* **Multi-Class Freshness Classification:** Classifies 6 produce categories (`freshapples`, `rottenapples`, `freshbananas`, `rottenbananas`, `freshoranges`, `rottenoranges`) with target validation accuracy $\ge 92\%$ and $F1 \ge 0.90$.
 * **Low-Latency CPU Execution:** Achieves end-to-end processing time $< 200\text{ ms}$ per image on standard CPU nodes via ONNX Runtime optimization.
 * **Hardware-Agnostic Interoperability:** Exports fine-tuned PyTorch weights to standardized `.onnx` (opset 13), ensuring numerical parity with a maximum absolute logit delta $|\Delta\text{logit}| < 10^{-4}$.
 * **Decoupled 3-Tier Architecture:** Clean separation of Presentation (Streamlit), Logic (FastAPI REST service), and Data Access Tiers.
