@@ -20,9 +20,9 @@ try:
     ort_session = ort.InferenceSession(MODEL_PATH)
     with open(LABELS_PATH, "r") as f:
         labels_map = json.load(f)
-    print("✅ ONNX Model and Labels loaded successfully.")
+    print("ONNX Model and Labels loaded successfully.")
 except Exception as e:
-    print(f"⚠️ Warning: Could not load model or labels from {MODEL_PATH}: {e}")
+    print(f"Warning: Could not load model or labels from {MODEL_PATH}: {e}")
 
 # 3. Helper Function: Image Preprocessing
 def preprocess_image(image_bytes: bytes) -> np.ndarray:
