@@ -19,13 +19,13 @@
 
 Post-harvest fruit inspection and quality grading in agricultural supply chains remain predominantly manual processes. Human visual inspection is labor-intensive, subjective, prone to physical fatigue, and highly inconsistent across operational shifts. Undetected rotten produce packaged alongside fresh fruit releases ethylene gas, rapidly contaminating entire inventory batches during transit and warehouse storage, leading to substantial economic loss and food waste.
 
-This project delivers an **Automated Fruit Quality Grading and Freshness Classification System**—a production-ready, real-time computer vision application that categorizes produce into six distinct fresh or rotten states across three major fruit categories (apples, bananas, and oranges). By leveraging transfer learning with a pre-trained **ResNet-18** CNN backbone, exporting to hardware-agnostic **ONNX Runtime**, serving via a **FastAPI** REST backend, rendering with a **Streamlit** GUI, and orchestrating deployment via **Docker Compose**, the platform provides high-accuracy, objective freshness assessments under 200 ms on CPU hardware.
+This project delivers an Automated Fruit Quality Grading and Freshness Classification System, an application that categorizes produce into six distinct fresh or rotten states across three major fruit categories (apples, bananas, and oranges). By leveraging transfer learning with a pre-trained ResNet-18 CNN backbone, exporting to hardware-agnostic ONNX Runtime, serving via FastAPI REST backend, rendering with Streamlit GUI, and orchestrating deployment via Docker Compose, the platform provides high-accuracy, objective freshness assessments under 200 ms on CPU hardware.
 
 ---
 
 ## Key System Features & Objectives
 
-* **Multi-Class Freshness Classification:** Classifies 6 produce categories (`freshapples`, `rottenapples`, `freshbananas`, `rottenbananas`, `freshoranges`, `rottenoranges`) with target validation accuracy $\ge 92\%$ and Macro $F1 \ge 0.90$.
+* **Multi-Class Freshness Classification:** Classifies 6 produce categories (`freshapples`, `rottenapples`, `freshbananas`, `rottenbananas`, `freshoranges`, `rottenoranges`) with target validation accuracy $\ge 92\%$ and $F1 \ge 0.90$.
 * **Low-Latency CPU Execution:** Achieves end-to-end processing time $< 200\text{ ms}$ per image on standard CPU nodes via ONNX Runtime optimization.
 * **Hardware-Agnostic Interoperability:** Exports fine-tuned PyTorch weights to standardized `.onnx` (opset 13), ensuring numerical parity with a maximum absolute logit delta $|\Delta\text{logit}| < 10^{-4}$.
 * **Decoupled 3-Tier Architecture:** Clean separation of Presentation (Streamlit), Logic (FastAPI REST service), and Data Access Tiers.
@@ -129,7 +129,7 @@ docker-compose up --build
 
 Access the services in your browser:
 * **Streamlit Web GUI:** [http://localhost:8501](http://localhost:8501)
-* **FastAPI Interactive Docs (Swagger):** [http://localhost:8000/docs](http://localhost:8000/docs)
+* **FastAPI Interactive Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
 * **API Health Check:** [http://localhost:8000/health](http://localhost:8000/health)
 
 ---
@@ -205,9 +205,9 @@ Returns system health, model load status, and runtime environment details.
 
 ## Development Team
 
-* **Rachel Joy Baldo** — Backend Lead & API Architect
-* **Aliyah Kate Wilsen See** — Machine Learning Lead & Model Trainer
-* **Richard Von Sopongco** — Frontend & QA Lead
+* **Rachel Joy Baldo**-Backend Lead & API Architect
+* **Aliyah Kate Wilsen See**-Machine Learning Lead & Model Trainer
+* **Richard Von Sopongco**-Frontend & QA Lead
 
 ---
 

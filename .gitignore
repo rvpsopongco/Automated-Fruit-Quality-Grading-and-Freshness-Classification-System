@@ -1,0 +1,19 @@
+# Checkpoint and Cache folders
+.ipynb_checkpoints/
+*/__pycache__/
+__pycache__/
+*.pyc
+
+# Heavy Dataset folder (Keep local, share via Google Drive/OneDrive)
+dataset/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Model binaries (Keeps labels.json, ignores large weights)
+models/*.onnx
+models/*.pth
+models/*.pt
+!models/labels.json
