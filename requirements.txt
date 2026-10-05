@@ -1,6 +1,6 @@
 fastapi==0.110.0
 uvicorn==0.28.0
-onnxruntime
+onnxruntime==1.17.1
 numpy==1.26.4
 pillow==10.2.0
 streamlit==1.32.2
