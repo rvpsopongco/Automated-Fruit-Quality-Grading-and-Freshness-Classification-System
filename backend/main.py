@@ -1,7 +1,7 @@
 import io
 import json
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageOps
 from fastapi import FastAPI, File, UploadFile, HTTPException
 import onnxruntime as ort
 
@@ -24,13 +24,15 @@ try:
 except Exception as e:
     print(f"Warning: Could not load model or labels from {MODEL_PATH}: {e}")
 
-# 3. Helper Function: Image Preprocessing
+# 3. Helper Functions: Preprocessing & Softmax
 def preprocess_image(image_bytes: bytes) -> np.ndarray:
-    """Resize, normalize, and format image into numpy tensor (1, 3, 224, 224)."""
+    """Resize preserving aspect ratio, center crop, normalize, and format into (1, 3, 224, 224)."""
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    image = image.resize((224, 224))
     
-    # Convert to float numpy array normalized between 0 and 1
+    # Preserves aspect ratio, scales shortest edge, and center crops to exact (224, 224)
+    image = ImageOps.fit(image, (224, 224), method=Image.Resampling.BILINEAR)
+    
+    # Scale to [0.0, 1.0]
     img_array = np.array(image).astype(np.float32) / 255.0
     
     # ImageNet Mean & Std Normalization
@@ -44,6 +46,7 @@ def preprocess_image(image_bytes: bytes) -> np.ndarray:
     # Add batch dimension -> (1, 3, 224, 224)
     img_array = np.expand_dims(img_array, axis=0)
     return img_array
+
 
 def softmax(x: np.ndarray) -> np.ndarray:
     """Compute Softmax probabilities from raw model output logits."""
@@ -72,16 +75,19 @@ async def predict(file: UploadFile = File(...)):
     # Run ONNX Inference Engine
     input_name = ort_session.get_inputs()[0].name
     raw_outputs = ort_session.run(None, {input_name: input_tensor})[0]
+    print(f"DEBUG RAW LOGITS: {raw_outputs}")
     
     # Calculate Softmax Probabilities
     probabilities = softmax(raw_outputs)[0]
     predicted_idx = int(np.argmax(probabilities))
     confidence = float(probabilities[predicted_idx])
-    predicted_class = labels_map.get(str(predicted_idx), "Unknown")
+    
+    # Direct list lookup using integer indices
+    predicted_class = labels_map[predicted_idx]
     
     # Format all class probabilities for output
-    all_scores = {labels_map.get(str(i), f"Class {i}"): float(prob) for i, prob in enumerate(probabilities)}
-    
+    all_scores = {labels_map[i]: float(prob) for i, prob in enumerate(probabilities)}
+
     return {
         "filename": file.filename,
         "prediction": predicted_class,
