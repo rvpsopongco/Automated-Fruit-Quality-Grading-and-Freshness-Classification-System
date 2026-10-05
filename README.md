@@ -205,9 +205,9 @@ Returns system health, model load status, and runtime environment details.
 
 ## Development Team
 
-* **Rachel Joy Baldo**-Backend Lead & API Architect
-* **Aliyah Kate Wilsen See**-Machine Learning Lead & Model Trainer
-* **Richard Von Sopongco**-Frontend & QA Lead
+* **Rachel Joy Baldo** -Machine Learning Lead & Model Trainer
+* **Aliyah Kate Wilsen See** -Frontend & Quality Assurance
+* **Richard Von Sopongco**-Backend Lead & API Architect
 
 ---
 
