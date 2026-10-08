@@ -41,9 +41,15 @@ Test images: `sample fruits for live demo/` (7 images). Each image was uploaded 
 
 ## 4. Observations
 
-1. **Sliced fruit is misclassified in both freshness and fruit type.** A fresh sliced apple was labeled `Rottenoranges` at 47.85%. This is consistent with the documented limitation that the model was trained only on whole fruit. The confidence (47.85%) was much lower than on every whole-fruit image (98.20% to 100.00%).
-2. **Many predictions show 100.00% confidence** (tests 2, 3, 5, 6). This may mean the model is overconfident, so confidence should not be read as proof of correctness.
-3. **Images with several fruits** (`apple1.jpg`, `banana1.jpg`, `orange1.jpg`) were classified correctly. The model returns one label per image.
+1. The model misclassified sliced fruit in both freshness and fruit type: a fresh, sliced apple was labeled “Rottenoranges” with only 47.85% confidence. This matches the known limitation that the model was trained exclusively on whole fruit images. The lower confidence in this out-of-distribution case stands in contrast to the high confidence (98.20%–100.00%) given to all whole-fruit images.
+2. Multiple predictions showed 100.00% confidence (tests 2, 3, 5, 6), indicating possible model overconfidence. High confidence values should not be interpreted as proof of correctness; further evaluation metrics and calibration are recommended.
+3. The model demonstrated strong performance and reliability on whole, clearly presented fruits, successfully distinguishing between fresh and rotten samples for apples, bananas, and oranges.
+4. For ambiguous or edge-case images (like the sliced apple), the model’s confidence dropped significantly, providing a useful signal for flagging uncertain classifications in the UI.
+5. The current implementation assigns a single label per image, which is sufficient for single-fruit images but limits utility for images containing multiple distinct fruits or ambiguous cases.
+6. The model’s categorical outputs match the expected classes, and there were no mislabelings among the whole-fruit images tested, supporting the correctness of label mapping and data consistency.
+7. No crashes, exceptions, or visible errors occurred during classification or UI use for any of the tested sample images, indicating application stability for the tested workflow.
+
+
 
 ## 5. Link to the Sprint 2 plan
 
@@ -57,9 +63,14 @@ The team's Sprint 2 priorities are Docker containerization, object detection and
 
 ### Additional QA recommendations
 
-- Show a warning in the UI when top confidence is below a set threshold (for example, under 70%), since the failing case had low confidence.
-- Keep the seven sample images as a small regression set and rerun them after each model or pipeline change.
+- Integrate a user-facing warning in the UI when classification confidence falls below a defined threshold (e.g., under 70%), as low confidence correlated with the known failure on the sliced apple test.
+- Expand the test set to include more edge cases, such as partially occluded fruits, mixed-quality fruits in one image, and images under varied lighting conditions, to better assess real-world performance.
+- Include automated tests for non-fruit images and unsupported file types to verify that the system gracefully handles invalid inputs.
+- Add robustness checks for backend availability and error handling to ensure the frontend provides clear feedback if the backend is unreachable or fails during inference.
+- Maintain the current set of sample images as a regression suite and use them to validate model and pipeline changes in future sprints.
+
+
 
 ## 6. Conclusion
 
-The application ran end to end following the startup tutorial, and the model classified all whole-fruit samples correctly. The sliced-apple failure matches a known, documented limitation. No code changes were needed, so this report is the QA contribution for Sprint 1.
+The application successfully ran end-to-end following the startup tutorial, and the model correctly classified all whole-fruit samples with high confidence and no software errors. The single misclassification on a sliced apple confirms a documented model limitation and highlights the need for further training on diverse data or the integration of object detection as planned for Sprint 2. No code modifications were necessary during this QA pass. These results provide a stable foundation for the next development sprint, with clear, actionable insights for model and system improvements.
